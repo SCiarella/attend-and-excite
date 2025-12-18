@@ -516,8 +516,11 @@ class AttendAndExcitePipeline(StableDiffusionPipeline):
                     latents = latents.clone().detach().requires_grad_(True)
 
                     # Forward pass of denoising with text conditioning
+                    # When using classifier-free guidance, prompt_embeds contains [uncond, cond] concatenated
+                    # We need only the conditional (positive) embeddings for attend-and-excite
+                    cond_embeds = prompt_embeds.chunk(2)[1] if do_classifier_free_guidance else prompt_embeds
                     noise_pred_text = self.unet(latents, t,
-                                                encoder_hidden_states=prompt_embeds[1].unsqueeze(0), cross_attention_kwargs=cross_attention_kwargs).sample
+                                                encoder_hidden_states=cond_embeds, cross_attention_kwargs=cross_attention_kwargs).sample
                     self.unet.zero_grad()
 
                     # Get max activation value for each subject token
