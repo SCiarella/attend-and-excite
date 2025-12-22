@@ -93,8 +93,11 @@ jupyter notebook notebooks/generate_images.ipynb
 If you encounter import errors related to `diffusers`, ensure you have the correct versions:
 
 ```bash
-pip install diffusers==0.21.4 transformers==4.30.2 accelerate==0.20.3 huggingface_hub==0.16.4
+# Reinstall the versions declared in pyproject.toml
+pip install -e . --upgrade
 ```
+
+Note: SD3/SD3.5 training (LoRA/DreamBooth) requires a newer Diffusers stack than legacy SD1/SD2 examples.
 
 ### CUDA/GPU Issues
 

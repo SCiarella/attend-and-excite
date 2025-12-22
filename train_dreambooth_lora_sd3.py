@@ -45,11 +45,6 @@ from torchvision.transforms.functional import crop
 from tqdm.auto import tqdm
 from transformers import CLIPTokenizer, PretrainedConfig, T5TokenizerFast
 
-# Diffusers' source checkout in this repo may enforce a strict PEFT version check at import time.
-# The training script itself imports and uses PEFT directly, so this only disables the *extra*
-# diffusers-side runtime gate.
-os.environ.setdefault("_CHECK_PEFT", "0")
-
 import diffusers
 from diffusers import (
     AutoencoderKL,
@@ -78,7 +73,7 @@ if is_wandb_available():
     import wandb
 
 # Will error if the minimal version of diffusers is not installed. Remove at your own risks.
-check_min_version("0.37.0.dev0")
+check_min_version("0.36.0")
 
 logger = get_logger(__name__)
 

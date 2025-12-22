@@ -1,8 +1,13 @@
 accelerate>=0.31.0
-torchvision
 transformers>=4.41.2
+diffusers>=0.37.0
+huggingface_hub>=0.23.0
+torchvision
 ftfy
 tensorboard
 Jinja2
-peft==0.11.1
+peft>=0.17.0
+safetensors>=0.4.0
+datasets>=2.20.0
+PyYAML>=6.0
 sentencepiece
